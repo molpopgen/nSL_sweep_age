@@ -6,7 +6,7 @@ import argparse
 import pandas as pd
 
 
-BinRecord = namedtuple("BinRecord", ['dafbin', 'meanz', 'meanstat','nmuts'])
+BinRecord = namedtuple("BinRecord", ['dafbin', 'meanz', 'meanstat', 'nmuts'])
 
 
 def make_parser():
@@ -43,8 +43,8 @@ def get_stats(sd, neutral_bins, args):
         zscores.extend(z.tolist())
         rv.append(BinRecord(b, z.mean(), stats.mean(), len(w)))
 
-    m=0.0
-    ttl=0
+    m = 0.0
+    ttl = 0
     for i in rv:
         ttl += i.nmuts
     for i in rv:
@@ -77,4 +77,4 @@ if __name__ == "__main__":
     with open(args.outfile, 'w') as f:
         dfg.to_csv(f, sep=" ", index=False)
     with open(args.outfile2, 'w') as f:
-        f.write("Mean overall z-score is {}\n".format(np.array(mean_zscores).mean()))
+        f.write("{}\n".format(np.array(mean_zscores).mean()))
